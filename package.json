@@ -4,5 +4,14 @@
   "description": "Gatsby source plugin to fetch data from Huray CMS",
   "repository": "https://github.com/cometkim/gatsby-source-huray-cms.git",
   "author": "Hyeseong Kim <cometkim.kr@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "build": "babel -d dist src"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.51",
+    "@babel/core": "^7.0.0-beta.51",
+    "@babel/preset-env": "^7.0.0-beta.51",
+    "babel-plugin-module-resolver": "^3.1.1"
+  }
 }
