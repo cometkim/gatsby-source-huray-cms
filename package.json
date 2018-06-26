@@ -5,9 +5,8 @@
   "repository": "https://github.com/cometkim/gatsby-source-huray-cms.git",
   "author": "Hyeseong Kim <cometkim.kr@gmail.com>",
   "license": "MIT",
-  "scripts": {
-    "build": "babel -d dist src",
-    "test": "jest"
+  "dependencies": {
+    "axios": "^0.18.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -15,5 +14,9 @@
     "babel-preset-env": "^1.7.0",
     "jest": "^23.1.0",
     "nock": "^9.3.3"
+  },
+  "scripts": {
+    "build": "babel -d dist src",
+    "test": "jest"
   }
 }
