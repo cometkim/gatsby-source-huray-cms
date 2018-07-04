@@ -9,14 +9,21 @@
     "axios": "^0.18.0"
   },
   "devDependencies": {
+    "axios-mock-adapter": "^1.15.0",
     "babel-cli": "^6.26.0",
     "babel-plugin-module-resolver": "^3.1.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "jest": "^23.1.0",
-    "nock": "^9.3.3"
+    "jest": "^23.1.0"
   },
   "scripts": {
     "build": "babel -d dist src",
     "test": "jest"
+  },
+  "jest": {
+    "verbose": true,
+    "testEnvironment": "node",
+    "testURL": "http://localhost:3000"
   }
 }
