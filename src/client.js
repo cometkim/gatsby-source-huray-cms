@@ -35,6 +35,12 @@ export default class HurayCmsClient {
     getAttachmentsForContents = async ({ contentId }) => await this._fetch(
         `${this.apiEndpoint}/contents/${contentId}/attachments`
     )
+    getAttachment = async ({ contentId, attachmentId }) => await this._fetch(
+        `${this.apiEndpoint}/contents/${contentId}/attachments/${attachmentId}`
+    )
+    downloadAttachment = async ({ contentId, attachmentId }) => await this._fetch(
+        `${this.apiEndpoint}/contents/${contentId}/attachments/${attachmentId}/download`
+    )
     getContentsByCategory = async ({ categoryKey }) => await this._fetch(
         `${this.apiEndpoint}/categories/${categoryKey}/contents`
     )
@@ -45,14 +51,6 @@ export default class HurayCmsClient {
     )
     getCategory = async ({ categoryKey }) => await this._fetch(
         `${this.apiEndpoint}/categories/${categoryKey}`
-    )
-
-    // Assets
-    getAllAssets = async () => await this._fetch(
-        `${this.apiEndpoint}/assets`
-    )
-    getAsset = async ({ assetId }) => await this._fetch(
-        `${this.apiEndpoint}/assets/${assetId}`
     )
 
     _fetch = async (url) => {
