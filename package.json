@@ -18,7 +18,8 @@
     "jest": "^23.1.0"
   },
   "scripts": {
-    "build": "babel -d dist src",
+    "prepublishOnly": "yarn build",
+    "build": "babel src -d .",
     "test": "jest"
   },
   "jest": {

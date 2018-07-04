@@ -60,6 +60,10 @@ typings/
 # next.js build output
 .next
 
+# build output
+/*.js
+!.babelrc.js
+
 # VSCode
 .vscode/*
 !.vscode/settings.json
