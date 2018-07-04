@@ -19,7 +19,7 @@ export default class HurayCmsClient {
     }
 
     // Users
-    getAllUser = async () => await this._fetch(
+    getAllUsers = async () => await this._fetch(
         `/users`
     )
     getUser = async ({ userId }) => await this._fetch(
@@ -33,17 +33,17 @@ export default class HurayCmsClient {
     getContent = async ({ contentId }) => await this._fetch(
         `/contents/${contentId}`
     )
-    getFieldsForContents = async ({ contentId }) => await this._fetch(
+    getFieldsForContent = async ({ contentId }) => await this._fetch(
         `/contents/${contentId}/fields`
     )
-    getAttachmentsForContents = async ({ contentId }) => await this._fetch(
+    getAttachmentsForContent = async ({ contentId }) => await this._fetch(
         `/contents/${contentId}/attachments`
     )
     getAttachment = async ({ contentId, attachmentId }) => await this._fetch(
-        `/contents/${contentId}/attachments/${attachmentId}`
+        `/attachments/${attachmentId}`
     )
     downloadAttachment = async ({ contentId, attachmentId }) => await this._fetch(
-        `/contents/${contentId}/attachments/${attachmentId}/download`
+        `/attachments/${attachmentId}/download`
     )
     getContentsByCategory = async ({ categoryKey }) => await this._fetch(
         `/categories/${categoryKey}/contents`
