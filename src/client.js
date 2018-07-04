@@ -1,65 +1,65 @@
-import axois from 'axios'
+import axios from 'axios'
 
 export default class HurayCmsClient {
     static API_VERSION = '/api/v1'
 
     constructor(baseUrl) {
-        this.baseUrl = baseUrl
-        this.apiEndpoint = baseUrl + HurayCmsClient.API_VERSION
-        this.token = null
+        this.client = axios.create({
+            baseURL: `${baseUrl}${HurayCmsClient.API_VERSION}`
+        })
     }
 
     login = async ({ username, password }) => {
-        const res = await axois.post(`${this.getUsersRoute()}/login`, { username, password }) 
-        this.token = res.headers['TOKEN']
+        try {
+            const res = await this.client.post(`/users/login`, { username, password }) 
+            this.client.defaults.headers.common['Authorization'] = res.headers.token
+        } catch(error) {
+            this._onError(error)
+        }
     }
 
     // Users
     getAllUser = async () => await this._fetch(
-        `${this.apiEndpoint}/users`
+        `/users`
     )
     getUser = async ({ userId }) => await this._fetch(
-        `${this.apiEndpoint}/users/${userId}`
+        `/users/${userId}`
     )
 
     // Contents
     getAllContents = async () => await this._fetch(
-        `${this.apiEndpoint}/contents`
+        `/contents`
     )
     getContent = async ({ contentId }) => await this._fetch(
-        `${this.apiEndpoint}/contents/${contentId}`
+        `/contents/${contentId}`
     )
     getFieldsForContents = async ({ contentId }) => await this._fetch(
-        `${this.apiEndpoint}/contents/${contentId}/fields`
+        `/contents/${contentId}/fields`
     )
     getAttachmentsForContents = async ({ contentId }) => await this._fetch(
-        `${this.apiEndpoint}/contents/${contentId}/attachments`
+        `/contents/${contentId}/attachments`
     )
     getAttachment = async ({ contentId, attachmentId }) => await this._fetch(
-        `${this.apiEndpoint}/contents/${contentId}/attachments/${attachmentId}`
+        `/contents/${contentId}/attachments/${attachmentId}`
     )
     downloadAttachment = async ({ contentId, attachmentId }) => await this._fetch(
-        `${this.apiEndpoint}/contents/${contentId}/attachments/${attachmentId}/download`
+        `/contents/${contentId}/attachments/${attachmentId}/download`
     )
     getContentsByCategory = async ({ categoryKey }) => await this._fetch(
-        `${this.apiEndpoint}/categories/${categoryKey}/contents`
+        `/categories/${categoryKey}/contents`
     )
 
     // Categories
     getAllCategories = async () => await this._fetch(
-        `${this.apiEndpoint}/categories`
+        `/categories`
     )
     getCategory = async ({ categoryKey }) => await this._fetch(
-        `${this.apiEndpoint}/categories/${categoryKey}`
+        `/categories/${categoryKey}`
     )
 
-    _fetch = async (url) => {
+    _fetch = async (uri) => {
         try {
-            const { data } = await axios.get(url, {
-                headers: {
-                    Authorization: `Bearer ${this.token}`
-                }
-            })
+            const { data } = await this.client.get(uri)
             return data
         } catch (error) {
             this._onError(error)
