@@ -43,8 +43,10 @@ exports.sourceNodes = async ({
     const contents = await client.getAllContents()
     const contentNodes = contents.map(content => {
         if (imageBaseUrl) {
-            content.description = content.description
-                .replace(/!\[.*\]\((.*)\/(.*\..*)\)/g, imageBaseUrl + '$2')
+            content.description = content.description.replace(
+                /!\[([^\]]+)\]\(([^\(]+\/)([^\)]+)\)/g,
+                `![$1](${imageBaseUrl}/$3)`
+            )
         }
         return content
     }).map(source => buildGatsbyNode({
