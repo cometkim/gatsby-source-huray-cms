@@ -1,10 +1,14 @@
 {
   "name": "gatsby-source-huray-cms",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Gatsby source plugin to fetch data from Huray CMS",
   "repository": "https://github.com/cometkim/gatsby-source-huray-cms.git",
   "author": "Hyeseong Kim <cometkim.kr@gmail.com>",
   "license": "MIT",
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin"
+  ],
   "dependencies": {
     "axios": "^0.18.0"
   },

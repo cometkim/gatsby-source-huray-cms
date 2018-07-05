@@ -22,17 +22,18 @@ plugins: [
 
 ```graphql
 {
-    allHurayContents {
+    allHurayContent {
         edges {
             node {
-                id
+                contentId
                 title
                 description
                 category
                 tags
-                createdAt
-                updatedAt
-                author {
+                created_at
+                updated_at
+                author { # HurayUser node
+                    userId
                     username
                     email
                 }
@@ -42,8 +43,11 @@ plugins: [
                     type
                     value
                 }
-                attachments {
-                    id
+                attachments { # HurayAttachment node
+                    attachmentId
+                    filename
+                    content_type
+                    byte_size
                 }
             }
         }
