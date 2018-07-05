@@ -11,10 +11,11 @@ plugins: [
         resolve: 'gatsby-source-huray-cms',
         options: {
             url: '', // URL of Huray CMS
-            username: '' // Username for login user
-            password: '' // Password for login user
-        }
-    }
+            username: '', // Username for login user
+            password: '', // Password for login user
+            imageBaseUrl: '/',
+        },
+    },
 ]
 ```
 

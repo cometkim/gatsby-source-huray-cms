@@ -27,6 +27,7 @@ exports.sourceNodes = async ({
     url,
     username,
     password,
+    imageBaseUrl,
 }) => {
     const client = new HurayCmsClient(url)
     await client.login({ username, password })
@@ -40,7 +41,13 @@ exports.sourceNodes = async ({
     userNodes.forEach(node => createNode(node))
 
     const contents = await client.getAllContents()
-    const contentNodes = contents.map(source => buildGatsbyNode({
+    const contentNodes = contents.map(content => {
+        if (imageBaseUrl) {
+            content.description = content.description
+                .replace(/!\[.*\]\((.*)\/(.*\..*)\)/g, imageBaseUrl + '$2')
+        }
+        return content
+    }).map(source => buildGatsbyNode({
         type: 'content',
         source,
         createNodeId,
