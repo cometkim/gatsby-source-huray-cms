@@ -45,7 +45,7 @@ exports.sourceNodes = async ({
         if (imageBaseUrl) {
             content.description = content.description.replace(
                 /!\[([^\]]+)\]\(([^\(]+\/)([^\)]+)\)/g,
-                `![$1](${imageBaseUrl}/$3)`
+                `![$1](${imageBaseUrl}$3)`
             )
         }
         return content
