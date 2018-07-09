@@ -65,6 +65,12 @@ exports.sourceNodes = async ({
     }))
     await Promise.all(
         contentNodes.map(async node => {
+            const customFields = await client.getFieldsForContent({ contentId: node.contentId })
+            node.customFields = customFields || []
+        })
+    )
+    await Promise.all(
+        contentNodes.map(async node => {
             const attachments = await client.getAttachmentsForContent({ contentId: node.contentId })
             const attachmentNodes = attachments.map(source => buildGatsbyNode({
                 type: 'attachment',
