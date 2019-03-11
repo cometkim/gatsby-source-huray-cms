@@ -1,5 +1,7 @@
 # gatsby-source-huray-cms
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/cometkim/gatsby-source-huray-cms.svg)](https://greenkeeper.io/)
+
 Gatsby source plugin to fetch contents from [Huray CMS](https://github.com/cometkim/huray-cms)
 
 ## How to use
